@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Card</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="main">
+
+        <div id="card">
+            <span> <img id="img1" width="120" height="60"> </span>
+
+        </div>
+        <h1 id="heading">Card Number</h1>
+        <div id="sequenceNo">
+            <input type="text" id="firstin" name="FirstName" size="5" maxlength="4">-
+            <input type="text" id="secondin" name="FirstName" size="5" maxlength="4">-
+            <input type="text" name="FirstName" id="thirdin" size="5" maxlength="4">-
+            <input type="text" id="fourthid" name="FirstName" size="5" maxlength="4">
+
+        </div>
+
+        <div style="margin-left:20px;">
+            E-mail:
+            <input id="myEmail" type="text" name="email" maxlength="35">
+            <input type="submit">
+        </div>
+        <div id="emailWarning" style="margin-left:20px;">
+
+        </div>
+        <div>
+            <span style="float:left; margin-left: 20px;"><h2>year </h2>
+            <select id="selectYear">                             <!--onchange event, when user changes the year value-->
+                <option id="option">
+
+                    </option>
+
+            </select>
+            </span>
+            <span style="float:left; margin-left: 10px;"><h2>month</h2>                     
+                <select id="selectMonth">
+
+                        <option id="optionMonth">
+
+                        </option>
+
+                </select>
+                </span>
+        </div>
+    </div>
+    <!-- main div -->
+
+    <script>
+        // Store image names to be displayed depending on the first number
+        var imageArr = ["discover.png", "american.png", "visa.gif", "mastercard.png"];
+
+        // DOM references for easy access and code readability.
+        var firstInput = document.getElementById("firstin");
+        var secondInput = document.getElementById("secondin");
+        var thirdInput = document.getElementById("thirdin");
+        var fourthInput = document.getElementById("fourthid");
+        var cardImage =  document.getElementById("img1");
+        // DOM references to select year, monnth and enter email address
+        var year = document.getElementById("selectYear");
+        var month = document.getElementById("selectMonth");
+        var myEmail = document.getElementById("myEmail");
+
+        // email - shows the email address enterd by the user, emailWarning throws an alert if email is not valid.
+
+        var email = myEmail.value;
+        var emailWarning = document.getElementById("emailWarning");
+
+        // Event listeners for both year and month fields.
+        year.addEventListener("change", checkYear);
+
+        // myEmail.addEventListener("click", emailIsValid(myEmail.text));
+        InitializeYearsAndMonths();
+
+        // function to show years and months options
+        function InitializeYearsAndMonths() {
+            //create year options
+            for (var i = 2001; i < 2020; i++) {
+                // document.getElementById("option1").innerHTML = i;
+                var years = document.createElement("option"); // option is <option> here
+                years.text += i;
+                year.add(years);
+
+
+            }
+            // create month options
+            for (var i = 1; i < 13; i++) {
+                // document.getElementById("option1").innerHTML = i;
+                var months = document.createElement("option"); // option is <option> here
+                months.text += i;
+                month.add(months);
+
+            }
+
+        }
+        // keep track of year change
+        function checkYear() {
+
+                // if year is 2012 or less than 2012, throws an alert
+            if ((year.options[year.selectedIndex].text <= '2012' && year.options[year.selectedIndex].text >= '2001')) {
+                alert('Your card is not valid');
+            }
+
+        }
+        // shows image if user enters 2 as first input
+        firstInput.onkeyup = function() {
+                if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
+                    secondInput.focus();
+
+                }
+
+                for (var i = 2; i < 6; i++) {
+                    if (firstInput.value[0] == i) {                                     
+                        cardImage.style.visibility = "visible";
+                        cardImage.src = imageArr[i - 2];
+                    }
+                }
+                if (firstInput.value[0] < 2) {
+
+                    cardImage.style.visibility = "hidden";
+
+                } 
+
+                else if (firstInput.value[0] > 5) {
+
+                    cardImage.style.visibility = "hidden";
+
+                }
+                 else if (firstInput.value[0] == null) {
+
+                    cardImage.style.visibility = "hidden";
+
+                }
+            }
+            //shows image if user enters 3 as first input
+            secondInput.onkeyup = function() {
+                if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
+                    thirdInput.focus();
+                }
+            }
+            // shows image if user enters 2 as first input
+            thirdInput.onkeyup = function() {
+                if (this.value.length === parseInt(this.attributes["maxlength"].value)) {
+                    fourthInput.focus();
+                }
+
+            }
+            //prints email address entered by the user in console
+        myEmail.onkeyup = function() {
+
+            // checks whether the email address is valid or not, if not valid, prints "invalid email!"
+
+            if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(myEmail.value) == false) {
+                emailWarning.innerHTML = "invalid email!";
+
+                //prints true in the console, if value is "" or valid email address
+            } else {
+                emailWarning.innerHTML = "";
+                return console.log(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(myEmail.value));
+            }
+        }
+    </script>
+</body>
+
+</html>

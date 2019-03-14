@@ -1,0 +1,55 @@
+#main{
+    height:400px;
+    width:400px;
+    border: 1px solid red;
+    float:left;
+    margin-top: 200px;
+    margin-left: 600px;
+    border-radius: 10px;
+    color:black;
+    background-color: grey;
+}
+
+#card{
+    height:60px;
+    width:120px;
+    border: 1px solid black;
+    margin-left: 130px;
+    margin-top: 30px;
+    
+}
+#img1{
+    visibility: hidden;
+}
+
+#sequenceNo{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#heading{
+    margin-left: 20px;
+}
+
+#emailDiv{
+    height:30px;
+    width:100px;
+    border:1px solid black;
+    margin-left: 20px;
+}
+
+
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+
+.note {
+    font-size: .8em;
+}
